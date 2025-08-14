@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: telecom-alert
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "python app.py"
