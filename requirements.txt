@@ -2,7 +2,7 @@ Flask==2.2.5
 gunicorn==21.2.0
 feedparser==6.0.10
 transformers==4.42.2
-torch==2.0.1
+torch==2.0.1+cpu --index-url https://download.pytorch.org/whl/cpu  # Updated line
 tqdm==4.66.1
 numpy==1.25.2
 huggingface-hub==0.14.1
