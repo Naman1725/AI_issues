@@ -6,3 +6,4 @@ torch>=2.5.0,<2.9.0
 tqdm==4.66.1
 numpy==1.25.2
 huggingface-hub==0.14.1
+setuptools>=65.0.0
