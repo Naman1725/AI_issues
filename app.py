@@ -1,8 +1,7 @@
 from flask import Flask, jsonify
 import feedparser
 from transformers import pipeline
-from tqdm import tqdm
-import json
+import os  # Added for port configuration
 
 app = Flask(__name__)
 
@@ -22,10 +21,10 @@ rss_feeds = [
 ]
 
 # --------------------------
-# 2. LOAD HUGGING FACE MODELS
+# 2. LOAD SMALLER HUGGING FACE MODELS (Free-tier compatible)
 # --------------------------
-classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
-summarizer = pipeline("summarization", model="philschmid/bart-large-cnn-samsum")
+classifier = pipeline("zero-shot-classification", model="typeform/distilbert-base-uncased-mnli")
+summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-6-6")
 
 # --------------------------
 # 3. HELPER FUNCTIONS
@@ -93,7 +92,8 @@ def get_urgent_issues():
     return jsonify(results), 200
 
 # --------------------------
-# 5. RUN APP
+# 5. RUN APP (Render compatible)
 # --------------------------
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
